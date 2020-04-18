@@ -19,14 +19,15 @@ class UploadController extends Controller {
         $uploadedFiles = $request->getUploadedFiles();
         $uploadedFile = $uploadedFiles['uploads'];
         if($uploadedFile->getError() === UPLOAD_ERR_OK){
-            $originalName = $uploadedFile->getClientFilename();
-            $originalTab = explode(".",$originalName);
-            $generatedName = sha1($originalName).".".$originalTab[count($originalTab) -1];
-            $uploadedFile->moveTo("./uploads/".$generatedName);
-            return $response->withJson(['errorCode'=>true, 'message'=>['formatfile'=>$originalTab[count($originalTab) -1], 'originalName'=>$originalName, 'generatedName'=>$generatedName]]);
+            // $originalName = $uploadedFile->getClientFilename();
+            // $originalTab = explode(".",$originalName);
+            // $generatedName = sha1($originalName).".".$originalTab[count($originalTab) -1];
+            // $uploadedFile->moveTo("./uploads/".$generatedName);
+            // return $response->withJson(array('errorCode'=>true, 'message'=>['formatfile'=>$originalTab[count($originalTab) -1], 'originalName'=>$originalName, 'generatedName'=>$generatedName]);
+            return $response->withJson(array('errorCode'=> true));
         }
         else{
-            return $response->withJson(['errorCode'=> false]);
+            return $response->withJson(array('errorCode'=> false));
         }
     }
 

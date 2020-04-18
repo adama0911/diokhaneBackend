@@ -2,7 +2,46 @@
 
 $app->get('/', App\Controllers\HomeController::class .':accueil');
 
-//$app->post('/', App\Controllers\HomeController::class .':accueil');
+$app->post('/', App\Controllers\HomeController::class .':accueil');
+
+$app->group('/home', function () {
+    $this->post('/produits', App\Controllers\HomeController::class .':produits');
+    $this->post('/cart', App\Controllers\HomeController::class .':cart');
+    $this->post('/wishlist', App\Controllers\HomeController::class .':wishlist');
+    $this->post('/compare', App\Controllers\HomeController::class .':compare');
+    $this->post('/singleProduct', App\Controllers\HomeController::class .':singleProduct');
+    $this->post('/achat', App\Controllers\HomeController::class .':achat');
+    $this->post('/produitsNext', App\Controllers\HomeController::class .':produitsNext');
+    $this->post('/produitsNextMotif', App\Controllers\HomeController::class .':produitsNextMotif');
+    $this->post('/produitsMotif', App\Controllers\HomeController::class .':produitsMotif');
+    $this->post('/vendre', App\Controllers\HomeController::class .':vendre');
+
+});
+
+$app->group('/cart', function () {
+    $this->post('/produits', App\Controllers\HomeController::class .':produits');
+    $this->post('/cart', App\Controllers\HomeController::class .':cart');
+    $this->post('/wishlist', App\Controllers\HomeController::class .':wishlist');
+    $this->post('/compare', App\Controllers\HomeController::class .':compare');
+    $this->post('/singleProduct', App\Controllers\HomeController::class .':singleProduct');
+});
+
+$app->group('/singleProduct', function () {
+    $this->post('/produits', App\Controllers\HomeController::class .':produits');
+    $this->post('/singleProduct', App\Controllers\SingleProductController::class .':singleProduct');
+});
+
+$app->group('/admin', function () {
+    $this->post('/add-produit', App\Controllers\AdminController::class .':addprod');
+    $this->post('/liste-commandes', App\Controllers\AdminController::class .':produits');
+
+    $this->post('/confirmerAchat', App\Controllers\AdminController::class .':confirmerAchat');
+});
+
+$app->group('/utile', function () {
+    $this->post('/cart-produit', App\Controllers\UtileController::class .':home');
+});
+
 
 $app->group('/auth', function () {
 
